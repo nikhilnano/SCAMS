@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./include/chatroom-head %>
+    <body>
+      <img src="<%= uname %>.jpg" class="user" onclick="window.location.href = '/dashboard'">
+      <button class="chat_room nav nav-left" onclick="window.location.href = '/chatroom'"><img src="" class="icon-invisible"><div class="hea">Chatroom</div><img src="chat.png" class="icon"></button>
+      <button class="grievance_form nav nav-left" onclick="window.location.href = '/grievance'"><img src="" class="icon-invisible"><div class="hea">Grievance</div><img src="discrepancy.png" class="icon"></button>
+      <button class="under_construction nav nav-left" onclick="window.location.href = '/grievancefind'"><img src="" class="icon-invisible"><div class="hea">Under Construction</div><img src="construction.png" class="icon"></button>
+      <form action="/out" method="post">
+        <button class="sign_out nav nav-left"><img src="" class="icon-invisible"><div class="hea">Sign Out</div><img src="logout.png" class="icon"></button>
+      </form>
+      <button class="contact_email nav nav-right"><img src="email.png" class="icon_right"><div class="hea">idea@gmail.com</div><img src="" class="icon-invisible"></button>
+      <button class="contact_number nav nav-right"><img src="call.png" class="icon_right"><div class="hea">9876543210</div><img src="" class="icon-invisible"></button>
+        <div class="chatbox">
+          <div class="chatlogs">
+            <% for (var i=0; i< chat.length; i++) { %>
+              <% if (chat[i].username == uname) { %>
+                <div class="chat self">
+              <% } else {%>
+                <div class="chat friend">
+              <% } %>
+                  <div class="user-photo"><img src="<%= chat[i].username + '.jpg' %>" title="<%= chat[i].username %>"></div>
+                  <p class="chat-message"><%= chat[i].message %></p>
+                </div>
+            <% }; %>
+            <div id="last"></div>
+          </div>
+          <div class="chat-form">
+            <form action="/msg" method="post">
+              <textarea name="message"></textarea>
+              <button>Send</button>
+            </form>
+          </div>
+        </div>
+        <script type="text/javascript"> document.getElementById('last').scrollIntoView(true); </script>
+    </body>
+</html>

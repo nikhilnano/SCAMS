@@ -1,0 +1,23 @@
+{
+  "name": "App",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "bootstrap": "^4.4.1",
+    "ejs": "2.6.1",
+    "jquery": "^3.4.1",
+    "popper.js": "1.12.9",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mysql": "^2.18.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}

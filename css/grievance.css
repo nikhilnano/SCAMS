@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(to right,#ff4b2b,#ff418c) no-repeat 0 0 /cover;
+    font-family: 'Merienda', cursive;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.heading{
+    width: 70%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: linear-gradient(to left,#ff4b2b,#ff418c) no-repeat 0 0 /cover;
+    color: white;
+    border-radius: 50px;
+}
+.grievancebox{
+    width: 700px;
+    min-width: 400px;
+    height: 500px;
+    padding: 20px 15px;
+    background: #eee;
+    border: none;
+    border-radius: 5%;
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+select{
+    width: 180px;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #555555;
+    margin: 1%;
+    font-weight: bold;
+    color: #ffffff;
+    display: inline-block;
+    transition: display 1s ease-in;
+    font-family: 'Merienda', cursive;
+}
+select:focus{
+    outline: none;
+}
+#pur {
+    display: block;
+    margin: 30px auto;
+}
+#adp, #hsp, #acdp, #mp{
+    display: none;
+}
+#adp.display, #hsp.display, #acdp.display, #mp.display{
+    display: inline-block;
+}
+.grievance-form{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+}
+
+.grievance-form textarea{
+    background: #d9d9d9;
+    width: 75%;
+    height: 100px;
+    border: 2px solid #eee;
+    padding: 10px;
+    color: #333;
+    border-radius: 8px;
+}
+
+.grievance-form textarea:focus{
+    background: #bbb;
+    outline: none;
+}
+.grievance-form button{
+    margin-left: 8px;
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background: #ff4b2b;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 35px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Merienda', cursive;
+}
+
+.grievance-form button:active{
+    transform: scale(0.8);
+}
+.grievance-form button:focus{
+    outline: none;
+}
+.user{
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+.nav {
+  display: flex;
+  font-family: 'Merienda', cursive;
+  justify-content: space-between!important;
+  box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+  color: #ff4b2b;
+
+}
+.icon{
+    height: 40px;
+    width: 40px;
+}
+.icon_right{
+    height: 40px;
+    width: 40px;
+}
+.chat_room{
+    display: flex;
+    position: fixed;
+    top: 300px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.grievance_form{
+    display: flex;
+    position: fixed;
+    top: 375px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.under_construction{
+    display: flex;
+    position: fixed;
+    top: 450px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.sign_out{
+    display: flex;
+    position: fixed;
+    top: 526px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-left {
+  width: 300px;
+  left: -218px;
+}
+.nav-left:hover{
+    transform: translateX(65%);
+}
+.contact_email{
+    display: flex;
+    position: fixed;
+    top: 350px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.contact_number{
+    display: flex;
+    position: fixed;
+    top: 430px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-right {
+  width: 300px;
+  right: -212px;
+}
+.nav-right:hover{
+    transform: translateX(-60%);
+}

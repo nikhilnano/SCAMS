@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./include/login-head %>
+    <body>
+        <div class="container" id="container">
+          <div class="form-container sign-up-container">
+            <form action="/register" method="post">
+              <h1>Create Account</h1>
+              <input type="text" name="r_username" placeholder="Name" required>
+              <input type="email" name="r_email" placeholder="Email" required>
+              <input type="password" name="r_password" placeholder="Password" required>
+              <button>Sign up</button>
+            </form>
+          </div>
+          <div class="form-container sign-in-container">
+            <form action="/auth" method="post">
+              <h1>Sign In </h1>
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <button>Sign in</button>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected to us!!<br>Please login</p>
+                <button class="ghost" id="signin">Sign In</button>
+              </div>
+              <div class="overlay-panel overlay-right">
+                <img src="icon.png">
+                <h1>Hello, Friend!</h1>
+                <p>To start your journey,<br> enter your personal details</p>
+                <button class="ghost" id="signup">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% include ./include/scripts %>
+    </body>
+</html>

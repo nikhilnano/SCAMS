@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(to right,#ff4b2b,#ff418c) no-repeat 0 0 /cover;
+    font-family: 'Merienda', cursive;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+.user{
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+.nav {
+  display: flex;
+  font-family: 'Merienda', cursive;
+  justify-content: space-between!important;
+  box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+  color: #ff4b2b;
+
+}
+.icon{
+    height: 40px;
+    width: 40px;
+}
+.icon_right{
+    height: 40px;
+    width: 40px;
+}
+.grievancebox{
+    width:500px;
+    min-width: 300px;
+    height: 350px;
+    padding: 20px 15px;
+    background: #eee;
+    border: none;
+    border-radius: 5%;
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+.chat_room{
+    display: flex;
+    position: fixed;
+    top: 300px;
+    left: 0px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.grievance_form{
+    display: flex;
+    position: absolute;
+    top: 375px;
+    left: 0px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.under_construction{
+    display: flex;
+    position: absolute;
+    top: 450px;
+    left: 0px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.sign_out{
+    display: flex;
+    position: absolute;
+    top: 526px;
+    left: 0px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-left {
+  width: 300px;
+  left: -218px;
+}
+.nav-left:hover{
+    transform: translateX(65%);
+}
+.contact_email{
+    display: flex;
+    position: absolute;
+    top: 350px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.contact_number{
+    display: flex;
+    position: absolute;
+    top: 430px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-right {
+  width: 300px;
+  right: -212px;
+}
+.nav-right:hover{
+    transform: translateX(-60%);
+}
+.dashboard_heading{
+    font-size: 80px;
+    font-weight: bolder;
+    position: absolute;
+    top: 60px;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1px white;
+    text-shadow: 5px 5px #cccccccc;
+}
+.welcome{
+    margin-top: 5%;
+    font-size: 40px;
+    font-weight: bolder;
+    line-height: 8rem;
+    letter-spacing: 2px;
+}
+.hea{
+    margin-top: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 50%;
+    align-items: center;
+}
+button:focus{
+    outline: none;
+}

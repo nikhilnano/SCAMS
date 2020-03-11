@@ -1,0 +1,262 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(to right,#ff4b2b,#ff416c) no-repeat 0 0 /cover;
+    font-family: 'Merienda', cursive;
+    color: #fff;
+    text-shadow: 2px 0px #000000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  	align-items: center;
+  	text-align: center;
+}
+.chatbox{
+    width: 700px;
+    min-width: 400px;
+    height: 500px;
+    padding: 20px 15px;
+    background: #eee;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+
+.chatlogs{
+    padding: 10px;
+    width: 100%;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.chatlogs::-webkit-scrollbar{
+    width: 10px;
+}
+.chatlogs::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: #b3b3b3;
+}
+
+.chat{
+    display:flex;
+    flex-flow: row;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+}
+.chat .user-photo{
+    width: 60px;
+    height: 60px;
+    background: #808080;
+    border-radius: 50%;
+}
+.chat .user-photo img{
+
+    width: 60px;
+    height: 60px;
+    background: #808080;
+    border-radius: 50%;
+    width: 100%;
+
+
+}
+.chat .chat-message{
+    width: 85%;
+    padding: 15px;
+    margin: 5px 10px 0;
+    background: #cccccc;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.friend .chat-message{
+    background: #ff6666;
+    text-align: left;
+}
+.self .chat-message{
+    background: #ff80b3;
+    order: -1;
+    text-align: right;
+}
+
+.chat-form{
+    margin-top: 20px;
+}
+
+.chat-form form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  	align-items: center;
+  	text-align: center;
+}
+
+.chat-form textarea{
+    background: #d9d9d9;
+    width: 75%;
+    height: 40px;
+    border: 2px solid #eee;
+    padding: 10px;
+    color: #333;
+    border-radius: 8px;
+    font-family: 'Merienda', cursive;
+}
+
+.chat-form textarea:focus{
+    background: #bbb;
+    outline: none;
+}
+.chat-form button{
+    margin-left: 10px;
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background: #ff4b2b;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    font-family: 'Merienda', cursive;
+}
+
+.chat-form button:active{
+    transform: scale(0.8);
+}
+.chat-form button:focus{
+    outline: none;
+}
+.user{
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+}
+.nav {
+  display: flex;
+  font-family: 'Merienda', cursive;
+  justify-content: space-between!important;
+  box-shadow: 0 14px 28px rgba(0,0,0,.4),0 10px 10px rgba(0,0,0,.3);
+  color: #ff4b2b;
+
+}
+.icon{
+    height: 40px;
+    width: 40px;
+}
+.icon_right{
+    height: 40px;
+    width: 40px;
+}
+.chat_room{
+    display: flex;
+    position: fixed;
+    top: 300px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.grievance_form{
+    display: flex;
+    position: fixed;
+    top: 375px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.under_construction{
+    display: flex;
+    position: fixed;
+    top: 450px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+     border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.sign_out{
+    display: flex;
+    position: fixed;
+    top: 526px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-left {
+  width: 300px;
+  left: -218px;
+}
+.nav-left:hover{
+    transform: translateX(65%);
+}
+.contact_email{
+    display: flex;
+    position: fixed;
+    top: 350px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.contact_number{
+    display: flex;
+    position: fixed;
+    top: 430px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    background-color:lightsalmon;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    border: none;
+    padding: 10px 35px;
+    transition: transform .3s ease-in;
+}
+.nav-right {
+  width: 300px;
+  right: -212px;
+}
+.nav-right:hover{
+    transform: translateX(-60%);
+}

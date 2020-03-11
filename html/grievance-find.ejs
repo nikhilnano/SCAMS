@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% include ./include/grievance-out-head %>
+    <body>
+      <img src="<%= name %>.jpg" class="user" onclick="window.location.href = '/dashboard'">
+      <button class="chat_room nav nav-left" onclick="window.location.href = '/chatroom'"><img src="" class="icon-invisible"><div class="hea">Chatroom</div><img src="chat.png" class="icon"></button>
+      <button class="grievance_form nav nav-left" onclick="window.location.href = '/grievance'"><img src="" class="icon-invisible"><div class="hea">Grievance</div><img src="discrepancy.png" class="icon"></button>
+      <button class="under_construction nav nav-left" onclick="window.location.href = '/grievancefind'"><img src="" class="icon-invisible"><div class="hea">Under Construction</div><img src="construction.png" class="icon"></button>
+      <form action="/out" method="post">
+        <button class="sign_out nav nav-left"><img src="" class="icon-invisible"><div class="hea">Sign Out</div><img src="logout.png" class="icon"></button>
+      </form>
+      <button class="contact_email nav nav-right"><img src="email.png" class="icon_right"><div class="hea">idea@gmail.com</div><img src="" class="icon-invisible"></button>
+      <button class="contact_number nav nav-right"><img src="call.png" class="icon_right"><div class="hea">9876543210</div><img src="" class="icon-invisible"></button>
+      <div class="grievancebox">
+        <div class="heading">
+          <h1>Grievances</h1>
+        </div>
+        <form action="/grievancedisplay" method="post">
+          <select id="pur" name="PURPOSE">
+            <option value="all">All</option>
+            <option value="ad">Administration</option>
+            <option value="hos">Hostel</option>
+            <option value="ot">others</option>
+          </select>
+          <select id="adp" name="ADMINISTRATION_PROBLEM">
+            <option value="null">Choose an option</option>
+            <option value="fin">Finance</option>
+            <option value="acd">Academics</option>
+            <option value="ot">Others</option>
+          </select>
+          <select id="acdp" name="ACADEMIC_PROBLEM">
+            <option value="null">Choose an option</option>
+            <option value="tea">Teacher</option>
+            <option value="att">Attendence</option>
+            <option value="ot">Others</option>
+          </select>
+          <select id="hsp" name="HOSTEL_PROBLEMS">
+            <option value="null">Choose an option</option>
+            <option value="mes">Mess</option>
+            <option value="mai">Maintainance</option>
+            <option value="spo">Sports</option>
+            <option value="ot">Others</option>
+          </select>
+          <select id="mp" name="MAINTAINANCE_PROBLEMS">
+            <option value="null">Choose an option</option>
+            <option value="ele">Electricity</option>
+            <option value="wat">Water</option>
+            <option value="fur">Furniture</option>
+            <option value="ot">Others</option>
+          </select>
+          <div class="search">
+            <button>SEARCH</button>
+          </div>
+        </form>
+      </div>
+      <% include ./include/scripts %>
+    </body>
+</html>
