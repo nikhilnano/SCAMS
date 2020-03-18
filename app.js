@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes');
 
+var port = process.env.PORT || 3000;
+
 var userdatabase = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
@@ -195,6 +197,6 @@ app.get('/dashboard', function(request, response) {
 	}
 });
 
-app.listen(3000, () => {
-  console.log('Server is running at localhost:3000');
+app.listen(port, () => {
+  console.log(	'Server is running at localhost: '+ port);
 });
