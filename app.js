@@ -1,26 +1,40 @@
-const mysql = require('mysql');
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes');
+const { Connection, Request } = require("tedious");
+var TYPES = require('tedious').TYPES;
 
 var port = process.env.PORT || 3000;
 
-var userdatabase = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'nikhil@123',
-	database : 'nodelogin'
-});
+const config = {
+	authentication: {
+		options: {
+			userName: "server-admin-login",
+			password: "nikhil@123"
+		},
+		type: "default"
+	},
+	server: "scams.database.windows.net",
+	options: {
+		database: "scams-database",
+		encrypt: true
+	}
+};
 
-userdatabase.connect(function(err){
-	if(!err) {
-	    console.log("Database is connected ...");
+const connection = new Connection(config);
+  
+connection.on("connect", err => {
+	if (err) {
+		console.error(err.message);
+		console.log(err);
 	} else {
-	    console.log("Error connecting database ...");
+		console.log("Connected...");
 	}
 });
+
+var _currentData = {};
 
 const app = express();
 
@@ -52,9 +66,21 @@ app.use('/', routes);
 app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
+	var results = [];
 
 	if (username && password) {
-		userdatabase.query('SELECT * FROM userdata WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		const req = new Request(`SELECT * FROM userdata WHERE username=@username AND password=@password`, (err) => {
+			if (err) { console.error(err.message);}});
+		req.addParameter('username', TYPES.VarChar, username);
+		req.addParameter('password', TYPES.VarChar, password);
+		req.on('row', function(columns) {
+			let val = {}
+			columns.forEach(function(column) {
+			  val[column.metadata.colName] = column.value;
+			});
+			results.push(val);
+		});
+		req.on('requestCompleted', function() { 
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
@@ -64,9 +90,7 @@ app.post('/auth', function(request, response) {
 			}
 			response.end();
 		});
-	} else {
-		response.send('<script>alert("Please enter Username and Password!");window.location="/";</script>');
-		response.end();
+		connection.execSql(req);
 	}
 });
 
@@ -77,25 +101,34 @@ app.post('/register', function(request, response) {
 	var email = request.body.r_email;
 	var rpassword = request.body.r_password;
 
-	userdatabase.query('INSERT INTO userdata values (?,?,?)', [name, email, rpassword], function(error, results, fields) {
-		if (!error) {
-			response.send('<script>alert("Registration Successful!");window.location="/";</script>');
-		} else {
+	const req = new Request(`INSERT INTO userdata values (@name,@email,@rpassword)`, (err) => {
+		if (err) {
 			response.send('<script>alert("Registration Failed!");window.location="/";</script>');
 		}
+		else {
+			response.send('<script>alert("Registration Successful!");window.location="/";</script>');
+		}
 	});
+	req.addParameter('name', TYPES.VarChar, name);
+	req.addParameter('email', TYPES.VarChar, email);
+	req.addParameter('rpassword', TYPES.VarChar, rpassword);
+	connection.execSql(req);
 });
 
 app.post('/msg', function(request, response) {
 	var message = request.body.message;
 
-	userdatabase.query('INSERT INTO messages_chat values (?,?)', [request.session.username, message], function(error, results, fields) {
-		if (!error) {
-			response.redirect('/chatroom');
-		} else {
+	const req = new Request(`INSERT INTO messages_chat values (@username,@message)`, (err) => {
+		if (err) {
 			response.send('<script>alert("Message not Sent!");window.location="/chatroom";</script>');
 		}
+		else {
+			response.redirect('/chatroom');
+		}
 	});
+	req.addParameter('username', TYPES.VarChar, request.session.username);
+	req.addParameter('message', TYPES.VarChar, message);
+	connection.execSql(req);
 });
 
 app.post('/griev', function(request, response) {
@@ -105,14 +138,24 @@ app.post('/griev', function(request, response) {
 	var hsp = request.body.HOSTEL_PROBLEMS;
 	var mp = request.body.MAINTAINANCE_PROBLEMS;
 	var problem = request.body.problem;
-	userdatabase.query('INSERT INTO grievance_data values (?,?,?,?,?,?,?,now())', [request.session.username, pur, adp, acdp, hsp, mp, problem], function(error, results, fields) {
-		if (!error) {
-			response.send('<script>alert("Grievance filed successfully!");window.location="/grievance";</script>');
-		} else {
+
+	const req = new Request(`INSERT INTO grievance_data values (@username,@pur,@adp,@acdp,@hsp,@mp,@problem,now())`, (err) => {
+		if (err) {
 			console.log(error);
 			response.send('<script>alert("Grievance not Filed!");window.location="/grievance";</script>');
 		}
+		else {
+			response.send('<script>alert("Grievance filed successfully!");window.location="/grievance";</script>');
+		}
 	});
+	req.addParameter('username', TYPES.VarChar, request.session.username);
+	req.addParameter('pur', TYPES.VarChar, pur);
+	req.addParameter('adp', TYPES.VarChar, adp);
+	req.addParameter('acdp', TYPES.VarChar, acdp);
+	req.addParameter('hsp', TYPES.VarChar, hsp);
+	req.addParameter('mp', TYPES.VarChar, mp);
+	req.addParameter('problem', TYPES.VarChar, problem);
+	connection.execSql(req);
 });
 
 app.post('/grievancedisplay', function(request, response) {
@@ -124,23 +167,46 @@ app.post('/grievancedisplay', function(request, response) {
 		var hsp = request.body.HOSTEL_PROBLEMS;
 		var mp = request.body.MAINTAINANCE_PROBLEMS;
 		if (pur === 'all') {
-			userdatabase.query('SELECT * FROM grievance_data', function(err, result) {
-	        if(err){
-	            console.log("Error in query;")
-	        } else {
-	            obj = {prob: result, name: request.session.username};
-							response.render('grievance-out', obj);
-	        }
-	    });
+			var results = [];
+
+			const req = new Request(`SELECT * FROM grievance_data`, (err) => {
+				if (err) { console.error(err.message);}});
+				
+			req.on('row', function(columns) {
+				let val = {}
+				columns.forEach(function(column) {
+				val[column.metadata.colName] = column.value;
+				});
+				results.push(val);
+			});
+			req.on('requestCompleted', function() {
+				obj = {prob: results, name: request.session.username};
+				response.render('grievance-out', obj);
+			});
+			connection.execSql(req);
 		} else {
-			userdatabase.query('SELECT * FROM grievance_data where purpose = ? and administration = ? and academic = ? and hostel = ? and maintainance = ?', [pur, adp, acdp, hsp, mp], function(err, result) {
-	        if(err){
-	            console.log("Error in query;")
-	        } else {
-	            obj = {prob: result, name: request.session.username};
-							response.render('grievance-out', obj);
-	        }
-	    });
+			var results = [];
+
+			const req = new Request(`SELECT * FROM grievance_data where purpose=@pur and administration=@adp and academic=@acdp and hostel=@hsp and maintainance=@mp`, (err) => {
+				if (err) { console.error(err.message);}});
+			req.addParameter('pur', TYPES.VarChar, pur);
+			req.addParameter('adp', TYPES.VarChar, adp);
+			req.addParameter('acdp', TYPES.VarChar, acdp);
+			req.addParameter('hsp', TYPES.VarChar, hsp);
+			req.addParameter('mp', TYPES.VarChar, mp);
+				
+			req.on('row', function(columns) {
+				let val = {}
+				columns.forEach(function(column) {
+				val[column.metadata.colName] = column.value;
+				});
+				results.push(val);
+			});
+			req.on('requestCompleted', function() {
+				obj = {prob: results, name: request.session.username};
+				response.render('grievance-out', obj);
+			});
+			connection.execSql(req);
 		}
 	}
 	else {
@@ -158,14 +224,23 @@ app.post('/out', function(request, response) {
 app.get('/chatroom', function(request, response) {
 	if (request.session.loggedin) {
 		var obj = {};
-		userdatabase.query('SELECT * FROM messages_chat', function(err, result) {
-        if(err){
-            console.log("Error in query;")
-        } else {
-            obj = {chat: result, uname: request.session.username};
-            response.render('chatroom', obj);
-        }
-    });
+		var results = [];
+
+		const req = new Request(`SELECT * FROM messages_chat`, (err) => {
+			if (err) { console.error(err.message);}});
+			
+		req.on('row', function(columns) {
+			let val = {}
+			columns.forEach(function(column) {
+			  val[column.metadata.colName] = column.value;
+			});
+			results.push(val);
+		});
+		req.on('requestCompleted', function() {
+			obj = {chat: results, uname: request.session.username};
+			response.render('chatroom', obj);
+		});
+		connection.execSql(req);
 	}
 	else {
 		response.send('<script>alert("Please login to view this page!");window.location="/";</script>');
